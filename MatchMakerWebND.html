@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MatchMaker For The Web</title>
+</head>
+
+<body>
+    <h1>MatchMaker Web Edition</h1>
+    <p>
+        /////////////////////////////////////////////////////////// <br />
+        ----------------------------------------------------------- <br />
+                          Matchmaker Version 3 <br />
+                    Will you be the one to win my heart? <br />
+                            Delgado, 2022. <br />
+        ----------------------------------------------------------- <br />
+        
+        This program was made to determine if you are compatible enough with me. <br />
+        You will answer 5 questions that range from sports, hobbies, and personality! <br />
+        Answer truthfully as only time will tell if you lied or not! <br />
+        
+        <br /> Good luck and I hope you make it to the end... <br />
+        /////////////////////////////////////////////////////////// <br />
+    </p>
+
+    <style>
+        body {
+            margin: 20px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            background-color: orange;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        h1 {
+            font-size: 48px;
+            color: white;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        p {
+            color: white;
+            font-size: 18px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+    </style>
+
+
+    <label> Being outdoors is better than being indoors: </label><br />
+    <select id = "q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree nor Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label> Soccer is the greatest sport in the world: </label><br />
+    <select id = "q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree nor Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label> Are you a social person?:  </label><br />
+    <select id = "q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree nor Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label> Listening to music is a great de-stresser: </label><br />
+    <select id = "q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree nor Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <label> Rap is the best genre of music:  </label><br />
+    <select id = "q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Neither Agree nor Disagree</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+    <br /><br />
+
+    <br /><br /><br />
+    <button onclick="calculateCompatability()">Calculate Compatability</button>
+    <p id="compatability"></p>
+
+    <p id="Message"></p>
+
+<script>
+    console.log("Starting MatchMaker...");
+
+function calculateCompatability() {
+    console.log("calculateCompatability()");
+
+
+    const DESIRED_RESPONSE = [
+        3, /* Neither Agree nor Disagree */
+        4, /* Agree */
+        3, /* Neither Agree nor Disagree */
+        5, /* Strongly Agree */
+        2, /* Disagree */
+    ]
+
+    const MAX_SCORE = 25;
+
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+    let question4Response = document.getElementById("q4").selectedOptions[0].value;
+    let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+    console.log("Question 1 Answers: ");
+    console.log(document.getElementById("q1").selectedOptions[0].text);
+    console.log(document.getElementById("q1").selectedOptions[0].value);
+    console.log(question1Response);
+
+    console.log("Question 2 Answers: ");
+    console.log(document.getElementById("q2").selectedOptions[0].text);
+    console.log(document.getElementById("q2").selectedOptions[0].value);
+    console.log(question2Response);
+
+    console.log("Question 3 Answers: ");
+    console.log(document.getElementById("q3").selectedOptions[0].text);
+    console.log(document.getElementById("q3").selectedOptions[0].value);
+    console.log(question3Response);
+
+    console.log("Question 4 Answers: ");
+    console.log(document.getElementById("q4").selectedOptions[0].text);
+    console.log(document.getElementById("q4").selectedOptions[0].value);
+    console.log(question4Response);
+
+    console.log("Question 5 Answers: ");
+    console.log(document.getElementById("q5").selectedOptions[0].text);
+    console.log(document.getElementById("q5").selectedOptions[0].value);
+    console.log(question5Response);
+
+    let question1Compatability = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+    let question2Compatability = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+    let question3Compatability = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatability = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatability = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+    console.log("c1=" +question1Compatability);
+    console.log("c2=" +question2Compatability);
+    console.log("c3=" +question3Compatability);
+    console.log("c4=" +question4Compatability);
+    console.log("c5=" +question5Compatability);
+
+    let totalCompatability = question1Compatability + question2Compatability + question3Compatability + question4Compatability + question5Compatability;
+
+    totalCompatability *= 100 / MAX_SCORE;
+    totalCompatability = Math.round(totalCompatability);
+    console.log("totalCompatability="+ totalCompatability);
+
+    
+    document.getElementById("compatability").innerHTML = "Your Compatability is: " + totalCompatability + "%";
+
+    if (totalCompatability > 90) {
+        console.log("Mamas you are the one for me. My place at 6 tomorrow?\n")
+        document.getElementById("Message").innerHTML = "Mamas you are the one for me. My place at 6 tomorrow?";
+    }
+    else if (totalCompatability > 80) {
+        console.log("I think we would make pretty good friends instead.\n")
+        document.getElementById("Message").innerHTML = "I think we would make a pretty good friends instead.";
+    }
+    else if (totalCompatability > 70) {
+        console.log("ehh it was worth a shot, you miss 100% of the shots you dont take y'know.\n")
+        document.getElementById("Message").innerHTML = "ehh it was worth a shot, you miss 100% of the shots you dont take yknow.";
+    }
+    else if (totalCompatability > 60) {
+        console.log("Sorry but I would rather be friends. Don't take it to heart.\n")
+        document.getElementById("Message").innerHTML = "Sorry but I would rather be friends. Don't take it to heart.";
+    }
+    else if (totalCompatability > 1) {
+        console.log("Yeah this is not gonna work at all, forget you even took this test.\n")
+        document.getElementById("Message").innerHTML = "Yeah this is not gonna work at all, forget you even took this test.";
+    }
+}
+
+</script>
+
+</body>
+</html>
